@@ -13,6 +13,7 @@ package jdbc.mvc.view;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import jdbc.mvc.controller.Evento_CRUD;
+import jdbc.mvc.controller.SystemMethods;
 import jdbc.mvc.controller.TipoEvento_CRUD;
 import jdbc.mvc.model.Evento_model;
 import jdbc.mvc.model.TipoEvento_model;
@@ -24,6 +25,7 @@ import jdbc.mvc.model.TipoEvento_model;
 public class CadastroEvento extends javax.swing.JDialog {
 
    public static ArrayList<TipoEvento_model> retornotipo = new ArrayList<TipoEvento_model>();
+   SystemMethods sm = new SystemMethods();
    
     public CadastroEvento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -31,6 +33,7 @@ public class CadastroEvento extends javax.swing.JDialog {
         
         TipoEvento_CRUD c = new TipoEvento_CRUD();
             retornotipo = (ArrayList<TipoEvento_model>) c.compara();
+            cmb_tipo.addItem("Selecione o TIPO");
             for(int i=0;i<retornotipo.size();i++)
             {
                 cmb_tipo.addItem(retornotipo.get(i).getTipo());
@@ -46,7 +49,6 @@ public class CadastroEvento extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn_menu = new javax.swing.JButton();
         btn_salvar = new javax.swing.JButton();
         btn_limpar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -63,9 +65,7 @@ public class CadastroEvento extends javax.swing.JDialog {
         ftxt_hora = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        btn_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Left.png"))); // NOI18N
-        btn_menu.setText("MENU");
+        setTitle("CADASTRO DE EVENTO");
 
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Checkmark.png"))); // NOI18N
         btn_salvar.setText("Cadastrar Evento");
@@ -95,9 +95,21 @@ public class CadastroEvento extends javax.swing.JDialog {
 
         jLabel3.setText("Data do Evento");
 
+        try {
+            ftxt_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel4.setText("Horário");
 
         jLabel5.setText("Local");
+
+        try {
+            ftxt_hora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,12 +173,10 @@ public class CadastroEvento extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(122, 122, 122)
                         .addComponent(btn_salvar)
-                        .addGap(33, 33, 33)
-                        .addComponent(btn_limpar)
-                        .addGap(43, 43, 43)
-                        .addComponent(btn_menu)))
+                        .addGap(55, 55, 55)
+                        .addComponent(btn_limpar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -177,35 +187,73 @@ public class CadastroEvento extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_salvar)
-                    .addComponent(btn_limpar)
-                    .addComponent(btn_menu))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addComponent(btn_limpar))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-556)/2, (screenSize.height-503)/2, 556, 503);
+        setBounds((screenSize.width-556)/2, (screenSize.height-501)/2, 556, 501);
     }// </editor-fold>//GEN-END:initComponents
 
 private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
 
+    if(txta_descricao.getText().equals(""))
+     {
+         JOptionPane.showMessageDialog(null,"Preencha a DESCRIÇÃO!!!");
+         txta_descricao.requestFocus();
+         return;
+     }
+    //************************************************************
+    
+    if(cmb_tipo.getSelectedIndex() == 0)
+     {
+         JOptionPane.showMessageDialog(null,"Escolha o TIPO!!!");
+         cmb_tipo.requestFocus();
+         return;
+     }
+    
+    //*************************************************************
+    
+    if(ftxt_data.getText().equals("  /  /    "))
+     {
+         JOptionPane.showMessageDialog(null,"Preencha a DATA!!!");
+         ftxt_data.requestFocus();
+         return;
+     }
+    //*************************************************************
+    
+    if(ftxt_hora.getText().equals("  :  "))
+     {
+         JOptionPane.showMessageDialog(null,"Preencha a HORA DO EVENTO!!!");
+         ftxt_hora.requestFocus();
+         return;
+     }
+    //******************************************************************
+    
+    if(txt_local.getText().equals(""))
+     {
+         JOptionPane.showMessageDialog(null,"Preencha o LOCAL DO EVENTO!!!");
+         txt_local.requestFocus();
+         return;
+     }
+    //******************************************************************
+    
+         
+    
+
     try {
         Evento_model c = new Evento_model();
 
-        //c.setTipo(cmb_tipo.getSelectedItem().toString());
-        c.setData(ftxt_data.getText());
-        c.setDescricao(txta_descricao.getText());
-        c.setLocal(txt_local.getText());
-        c.setHora(ftxt_hora.getText());
         
-        for(int i=0;i<retornotipo.size();i++)
-            {
-                if(cmb_tipo.getSelectedItem().toString().equals(retornotipo.get(i).getTipo()))
-                {
-                    c.setTipo(retornotipo.get(i).getTipo());
-                }
-
-            }
-        c.setPos(cmb_tipo.getSelectedIndex()+1);
+        c.setDescricao(txta_descricao.getText());
+        
+              
+        c.setId(retornotipo.get(cmb_tipo.getSelectedIndex()-1).getCodtipoevento());
+        System.out.println(retornotipo.get(cmb_tipo.getSelectedIndex()-1).getCodtipoevento());
+        c.setData(sm.getData("yyyyMMdd"));
+        c.setHora(ftxt_hora.getText());
+        c.setLocal(txt_local.getText());
+        
 
 
         Evento_CRUD cd = new Evento_CRUD();
@@ -233,7 +281,6 @@ private void btn_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         txta_descricao.setText("");
         ftxt_data.setText("");
         cmb_tipo.setSelectedItem(-1);
-        
         txta_descricao.requestFocus();
 }//GEN-LAST:event_btn_limparActionPerformed
 
@@ -282,7 +329,6 @@ private void btn_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_limpar;
-    private javax.swing.JButton btn_menu;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JComboBox cmb_tipo;
     private javax.swing.JFormattedTextField ftxt_data;

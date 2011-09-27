@@ -6,17 +6,16 @@ package jdbc.mvc.model;
 public class Evento_model {
 
     private String descricao;
-    private String tipo;
     private String data;
     private String local;
-    private int pos;
+    private int id;
 
-    public int getPos() {
-        return pos;
+    public int getId() {
+        return id;
     }
 
-    public void setPos(int pos) {
-        this.pos = pos;
+    public void setId(int pos) {
+        this.id = pos;
     }
 
     public String getHora() {
@@ -52,11 +51,5 @@ public class Evento_model {
         this.local = local;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    
 }

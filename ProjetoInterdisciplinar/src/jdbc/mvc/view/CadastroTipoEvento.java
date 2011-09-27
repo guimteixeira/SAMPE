@@ -38,10 +38,10 @@ public class CadastroTipoEvento extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_descricao = new javax.swing.JTextField();
-        btn_menu = new javax.swing.JButton();
         btn_salvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("CADASTRO TIPO DE EVENTO");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo do Evento", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
 
@@ -69,14 +69,6 @@ public class CadastroTipoEvento extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Left.png"))); // NOI18N
-        btn_menu.setText("Voltar");
-        btn_menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_menuActionPerformed(evt);
-            }
-        });
-
         btn_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Checkmark.png"))); // NOI18N
         btn_salvar.setText("Cadastrar Tipo Evento");
         btn_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,33 +83,35 @@ public class CadastroTipoEvento extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btn_salvar)
-                        .addGap(53, 53, 53)
-                        .addComponent(btn_menu))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(124, Short.MAX_VALUE)
+                .addComponent(btn_salvar)
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_salvar)
-                    .addComponent(btn_menu))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_salvar)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-416)/2, (screenSize.height-198)/2, 416, 198);
+        setBounds((screenSize.width-416)/2, (screenSize.height-182)/2, 416, 182);
     }// </editor-fold>//GEN-END:initComponents
 
 private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salvarActionPerformed
 
+    if (txt_descricao.getText().equals(""))
+    {
+        JOptionPane.showMessageDialog(null,"É OBRIGATÓRIO preencher a DESCRIÇÃO!!!!");
+        txt_descricao.requestFocus();
+        return;
+    }
     try {
         TipoEvento_model c = new TipoEvento_model();
 
@@ -140,10 +134,6 @@ private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     }
 }//GEN-LAST:event_btn_salvarActionPerformed
-
-private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menuActionPerformed
-    this.dispose();
-}//GEN-LAST:event_btn_menuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,7 +179,6 @@ private void btn_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_menu;
     private javax.swing.JButton btn_salvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

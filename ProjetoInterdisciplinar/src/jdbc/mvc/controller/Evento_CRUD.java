@@ -22,15 +22,14 @@ public class Evento_CRUD {
    try{
       co.conectar();
       PreparedStatement stmt = co.con.prepareStatement(
-     "INSERT INTO Evento(descricao,tipo,data,hora,local,idtipoEvento) " +
-     "VALUES(?,?,?,?,?,?)");
+     "INSERT INTO Evento(descricao,data,hora,local,idTipoEvento) " +
+     "VALUES(?,?,?,?,?)");
 
        stmt.setString(1, dados.getDescricao());
-       stmt.setString(2, dados.getTipo());
-       stmt.setString(3, dados.getData());
-       stmt.setString(4, dados.getHora());
-       stmt.setString(5, dados.getLocal());
-       stmt.setString(6, String.valueOf(dados.getPos()));
+       stmt.setString(2, dados.getData());
+       stmt.setString(3, dados.getHora());
+       stmt.setString(4, dados.getLocal());
+       stmt.setString(5, String.valueOf(dados.getId()));
        
 
        stmt.execute();

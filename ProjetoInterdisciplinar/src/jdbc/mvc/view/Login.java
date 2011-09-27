@@ -10,6 +10,7 @@
  */
 package jdbc.mvc.view;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import jdbc.mvc.controller.SystemMethods;
 import jdbc.mvc.controller.Usuario_CRUD;
@@ -32,6 +33,43 @@ public class Login extends javax.swing.JDialog {
          int y =  (sistema.retornaAlturaTela()/2);
         
          this.setLocation(x, y);
+    }
+    
+    public void iniciaLogin() {
+             
+        //verifica se campo usuário está vazio
+        if(jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o campo usuário!",
+                    "Login no Sistema", JOptionPane.INFORMATION_MESSAGE);
+            jTextField1.requestFocus();
+            return;
+        }
+        
+        //verifica se campo senha está vazio
+        if(jPasswordField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha o campo senha!",
+                    "Login no Sistema", JOptionPane.INFORMATION_MESSAGE);
+            jPasswordField1.requestFocus();
+            return;
+        }
+        
+        UsuarioSistema usuario = new UsuarioSistema(); //instancia classe modelo usuario sistema
+        Usuario_CRUD us = new Usuario_CRUD(); // instancia clase com metodos para usuario
+        
+        //recupera dados digitados pelo usuário
+        usuario.setUsuario(jTextField1.getText());
+        usuario.setSenha(jPasswordField1.getText());
+        
+        //verifica login
+        if(us.verificaUsuario(usuario)){
+            Principal tela = new Principal(usuario);
+            tela.setExtendedState(JFrame.MAXIMIZED_BOTH);  
+            tela.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Usuário ou senha inválido!",
+                    "Login no Sistema", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -64,15 +102,30 @@ public class Login extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel1.setDisplayedMnemonic('u');
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel1.setLabelFor(jTextField1);
         jLabel1.setText("Usuário:");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel2.setDisplayedMnemonic('s');
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel2.setLabelFor(jPasswordField1);
         jLabel2.setText("Senha:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
+
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
             }
         });
 
@@ -84,7 +137,7 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12));
         jLabel3.setText("Efetue seu login:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -162,40 +215,24 @@ public class Login extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-             
-        //verifica se campo usuário está vazio
-        if(jTextField1.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o campo usuário!",
-                    "Login no Sistema", JOptionPane.INFORMATION_MESSAGE);
-            jTextField1.requestFocus();
-            return;
-        }
-        
-        //verifica se campo senha está vazio
-        if(jPasswordField1.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Preencha o campo senha!",
-                    "Login no Sistema", JOptionPane.INFORMATION_MESSAGE);
-            jPasswordField1.requestFocus();
-            return;
-        }
-        
-        UsuarioSistema usuario = new UsuarioSistema(); //instancia classe modelo usuario sistema
-        Usuario_CRUD us = new Usuario_CRUD(); // instancia clase com metodos para usuario
-        
-        //recupera dados digitados pelo usuário
-        usuario.setUsuario(jTextField1.getText());
-        usuario.setSenha(jPasswordField1.getText());
-        
-        //verifica login
-        if(us.verificaUsuario(usuario)){
-            Principal tela = new Principal();
-            tela.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Usuário ou senha inválido!",
-                    "Login no Sistema", JOptionPane.INFORMATION_MESSAGE);
-        }
+        iniciaLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+         if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER)
+          {
+              iniciaLogin();
+          }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        // TODO add your handling code here:
+          if (evt.getKeyCode()==java.awt.event.KeyEvent.VK_ENTER)
+          {
+              iniciaLogin();
+          }
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
     /**
      * @param args the command line arguments

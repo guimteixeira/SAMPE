@@ -20,6 +20,7 @@ public class CadastroEmail extends javax.swing.JDialog {
     public CadastroEmail(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+     
     }
 
     /** This method is called from within the constructor to
@@ -167,7 +168,7 @@ public class CadastroEmail extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                CadastroEmail dialog = new CadastroEmail(new javax.swing.JFrame(), true);
+               CadastroEmail dialog = new CadastroEmail(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     @Override

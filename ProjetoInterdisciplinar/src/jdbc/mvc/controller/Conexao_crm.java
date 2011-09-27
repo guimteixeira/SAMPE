@@ -1,12 +1,15 @@
 
 package jdbc.mvc.controller;
 
+import java.awt.Frame;
 import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import jdbc.mvc.model.ConfiguracoesBd;
+import jdbc.mvc.view.TelaConfiguracoesBd;
 
 
 
@@ -43,14 +46,37 @@ public class Conexao_crm
         }//try
                 catch(ClassNotFoundException exc)
         {
-            System.out.println("Erro no driver " + exc.getMessage());
+            JOptionPane.showMessageDialog(null,"Erro no driver " + exc.getMessage() + "\nVerifique seu driver JDBC e execute o programa novamente.","Conexão ao BD CRM", JOptionPane.ERROR_MESSAGE);
+            
         }//catch 1
                 catch(SQLException exc)
         {
-            System.out.println("Erro de conexao =" + exc.getMessage());
+            
+             String[] botoes = {"Sim","Não"}; 
+            
+             if (JOptionPane.showOptionDialog(null, 
+                "Erro de conexao = " + exc.getMessage() + "\nDeseja verificar seus dados da conexão?",
+                "Conexão ao BD CRM",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null, botoes, botoes[1]) == 0) {
+                 
+                 Frame exibi = new Frame();
+                 
+                 TelaConfiguracoesBd telaConfiguracao = new TelaConfiguracoesBd(exibi, true);
+                 telaConfiguracao.setVisible(true);
+                 exibi.dispose();
+                 
+             } else {
+                 JOptionPane.showMessageDialog(null, "O sistema será finalizado!", "Conexão ao BD CRM", JOptionPane.ERROR_MESSAGE);
+                 System.exit(0);
+             }
+            
         }//catch 2
+        
 
     }//void
+  
+  
 
     public void Fechar_Conexao()
     {

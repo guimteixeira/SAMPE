@@ -11,6 +11,7 @@
 package jdbc.mvc.view;
 
 import com.mysql.jdbc.PreparedStatement;
+import java.awt.Frame;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import jdbc.mvc.controller.Categoria_CRUD;
 import jdbc.mvc.controller.Conexao_crm;
 import jdbc.mvc.controller.Pessoa_CRUD;
@@ -42,14 +44,20 @@ public class CadastroPessoa extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        Categoria_CRUD c = new Categoria_CRUD();
+        preencher_categoria();
+            jTextField4.setText(sm.getData("dd/MM/yyyy"));
+        
+    }
+    
+    public void preencher_categoria()
+    {
+         Categoria_CRUD c = new Categoria_CRUD();
             retornocategoria = (ArrayList<Categoria_model>) c.compara();
+            jComboBox4.removeAllItems();
             for(int i=0;i<retornocategoria.size();i++)
             {
                 jComboBox4.addItem(retornocategoria.get(i).getDescricaocategoria());
             }
-            jTextField4.setText(sm.getData("dd/MM/yyyy"));
-        
     }
 
    
@@ -93,10 +101,12 @@ public class CadastroPessoa extends javax.swing.JDialog {
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -162,16 +172,21 @@ public class CadastroPessoa extends javax.swing.JDialog {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná ", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe ", "Tocantins", " " }));
 
-        jButton4.setText("Cadastrar Pessoa");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jLabel15.setText("categoria");
+
+        jButton1.setText("Cadastrar Categoria");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Limpar");
-
-        jLabel15.setText("categoria");
+        jButton2.setText("Cadastrar Filhos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,14 +196,9 @@ public class CadastroPessoa extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(67, 67, 67)
-                        .addComponent(jButton5))
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -237,25 +247,32 @@ public class CadastroPessoa extends javax.swing.JDialog {
                                             .addComponent(jLabel12)
                                             .addComponent(jLabel10)
                                             .addComponent(jLabel15))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                        .addGap(14, 14, 14))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel13)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, 0, 148, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,14 +307,16 @@ public class CadastroPessoa extends javax.swing.JDialog {
                     .addComponent(jLabel9)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -314,12 +333,24 @@ public class CadastroPessoa extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel15)
                         .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addGap(24, 24, 24))
+                .addGap(21, 21, 21))
         );
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Checkmark.png"))); // NOI18N
+        jButton4.setText("Cadastrar Pessoa");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Applications.png"))); // NOI18N
+        jButton5.setText("Limpar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -328,13 +359,22 @@ public class CadastroPessoa extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(293, 293, 293)
+                .addComponent(jButton4)
+                .addGap(90, 90, 90)
+                .addComponent(jButton5)
+                .addContainerGap(308, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addContainerGap())
         );
 
         pack();
@@ -345,7 +385,87 @@ public class CadastroPessoa extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+            if(jTextField1.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Nome!");
+                jTextField1.requestFocus();
+                return;
+            }
+            if(jTextField2.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Idade!");
+                jTextField2.requestFocus();
+                return;
+            }
+            if(jComboBox1.getSelectedIndex()== (-1))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Sexo!");
+                return;
+            }
+            if(jTextField3.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Email!");
+                jTextField3.requestFocus();
+                return;
+            }
+            if(jFormattedTextField1.getText().equals("(  )    -    ") ) 
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Telefone!");
+                jFormattedTextField1.requestFocus();
+                return;
+            }
+            if(jFormattedTextField2.getText().equals("(  )    -    "))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Celular!");
+                jFormattedTextField2.requestFocus();
+                return;
+            }
+            if(jComboBox2.getSelectedIndex()== (-1))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Estado Civil!");
+                return;
+            }
+            if(jTextField5.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Logradouro!");
+                jTextField5.requestFocus();
+                return;
+            }
+            if(jTextField6.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Número!");
+                jTextField6.requestFocus();
+                return;
+            }
+            if(jTextField7.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Bairro!");
+                jTextField7.requestFocus();
+                return;
+            }
+            if(jTextField8.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Complemento!");
+                jTextField8.requestFocus();
+                return;
+            }
+            if(jFormattedTextField3.getText().equals("     -   "))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo CEP!");
+                jFormattedTextField3.requestFocus();
+                return;
+            }
+            if(jComboBox3.getSelectedIndex()== (-1))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Estado!");
+                return;
+            }
+            if(jComboBox4.getSelectedIndex()== (-1))
+            {
+                JOptionPane.showMessageDialog(null, "Preencha o campo Categoria!");
+                return;
+            }
+            
              Endereco_model e = new Endereco_model();
              e.setLogradouro(jTextField5.getText());
              e.setNumero(jTextField6.getText());
@@ -376,7 +496,7 @@ public class CadastroPessoa extends javax.swing.JDialog {
             if (jComboBox2.getSelectedItem().equals("Divorciado")) {
                 c.setEstadocivilpessoa('d');
                 }
-            c.setPos(jComboBox4.getSelectedIndex() + 1);
+            c.setPos(retornocategoria.get(jComboBox4.getSelectedIndex()).getCodcategoria());
             c.setDatacadastropessoa(sm.getData("yyyyMMdd"));
             try {
                 Pessoa_CRUD cd = new Pessoa_CRUD();
@@ -394,6 +514,7 @@ public class CadastroPessoa extends javax.swing.JDialog {
                 jComboBox1.setSelectedIndex(-1);
                 jComboBox2.setSelectedIndex(-1);
                 jComboBox3.setSelectedIndex(-1);
+                jComboBox4.setSelectedIndex(-1);
                 jTextField1.requestFocus();
                 }//try
                 catch (Exception exc) {
@@ -401,6 +522,43 @@ public class CadastroPessoa extends javax.swing.JDialog {
                     }
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+        Frame y = new Frame();
+    
+        CadastroCategoriaPessoa x = new CadastroCategoriaPessoa(y, true);
+        x.setVisible(true);
+        
+        y.dispose();
+        preencher_categoria();
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                jTextField8.setText("");
+                jFormattedTextField1.setText("");
+                jFormattedTextField2.setText("");
+                jFormattedTextField3.setText("");
+                jComboBox1.setSelectedIndex(-1);
+                jComboBox2.setSelectedIndex(-1);
+                jComboBox3.setSelectedIndex(-1);
+                jComboBox4.setSelectedIndex(-1);
+                jTextField1.requestFocus();
+}//GEN-LAST:event_jButton5ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    Frame y = new Frame();    
+    
+    CadastroFilho tela = new CadastroFilho(y, true);
+        tela.setVisible(true);
+        y.dispose();
+}//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,6 +604,8 @@ public class CadastroPessoa extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;

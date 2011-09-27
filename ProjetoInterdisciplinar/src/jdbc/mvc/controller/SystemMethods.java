@@ -27,6 +27,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import jdbc.mvc.model.ArquivoBk;
+import jdbc.mvc.model.ConfiguracoesBd;
 
 /**
  *
@@ -53,7 +54,7 @@ public class SystemMethods {
        
         //envia texto para quadro
         textoStatus.setText("Criar o arquivo de Backup...\n");
-        //25% para barradeEstado
+        //1% para barradeEstado
         barraEstado.setValue(1);
         //envia texto para barra do processo
         barraProcesso.setString("Processo em Andamento...");
@@ -294,12 +295,46 @@ public class SystemMethods {
                 JOptionPane.showMessageDialog(null, "ERRO NA "
                         + "LEITURA DO BANCO!\n Erro: " + ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
             }
+            catch(NullPointerException exc){
+                //devido a erro na coexao
+            System.out.println(exc.getMessage());
+            
+            textoStatus.setText("Reinicie o processo!");  
+            barraEstado.setValue(0); 
+            barraProcesso.setString("Aguardando início do processo..."); 
+            barraProcesso.setIndeterminate(false);
+            
+            return;
+        }
             
             //envia todos scripts de Insert para classe arquivobk
             arquivo.setScriptInsert(scriptInsert);
 
        
             File file = fileChooser.getSelectedFile();
+             
+            if(file.exists()) {
+                System.out.println("Arquivo existe.");
+                String[] botoes = {"Sim","Não"};  //botoes a substituir o JOptionPane.YES_NO_OPTION
+        
+                //tratar sobreescrever arquivo
+                 if (JOptionPane.showOptionDialog(fileChooser,"O arquivo já existe. Deseja sobrescrevê-lo?","Criar arquivo de Backup",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,null, botoes, botoes[1]) == 1) {
+                        backupBd(textoStatus, barraEstado, barraProcesso);
+                        return;
+                 }
+            }//fim da verificação se o arquivo criado existe
+            
+            //trata a extensão do arquivo
+             String ext[] = file.getName().split("\\.");   
+             int i = ext.length;  
+             System.out.println(i);
+             if(i <= 1) {//não tem extensão
+                 file = new File(file.getPath()+".bkc");
+            }
+            
+            
             System.out.println("Nome do arquivo: " + file.getName());
             
             //insere dados no arquivo criado pelo usuário
@@ -332,9 +367,118 @@ public class SystemMethods {
        barraProcesso.setString("Processo finalizado..."); 
        barraProcesso.setIndeterminate(false);
        
-       
-       
     }
+    
+    //le bk 
+    
+    public void restauraBd(JTextArea textoStatus, JProgressBar barraEstado, JProgressBar barraProcesso){
+        
+        //envia texto para quadro
+        textoStatus.setText("Ler o arquivo de Backup...\n");
+        //1% para barradeEstado
+        barraEstado.setValue(1);
+        //envia texto para barra do processo
+        barraProcesso.setString("Processo em Andamento...");
+        //anima indeterminadamento a barra do processo
+        barraProcesso.setIndeterminate(true);
+      
+        //cria tela para salvar
+        JFileChooser fileChooser = new JFileChooser();  
+        
+        //limita somente arquivo do tipo .bkc
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Arquivos de Backup do CRM (*.bkc)", "bkc");
+        
+        //proibido outras extensões
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        
+        //adiciona somente o tipo .bkc
+        fileChooser.setFileFilter(filter);  
+        
+        //defini titulo da janela de salvar
+        fileChooser.setDialogTitle("Ler arquivo de Backup CRM");
+        
+                
+        //chama a tela e retorna o que usuario fez
+        int option = fileChooser.showOpenDialog(null); 
+        
+        //se criou o arquivo
+        if (option == JFileChooser.APPROVE_OPTION) {
+            
+            //instancia o modelo de Arquivo para BK
+            ArquivoBk arquivo = new ArquivoBk();
+            //escreve 100% na barra estado, pois acabou de criar arquivo
+            barraEstado.setValue(100);
+            
+            //instancia o novo arquivo
+            File file = fileChooser.getSelectedFile();
+            
+            //amarra extensao
+            String ext[] = file.getName().split("\\.");   
+             int i = ext.length;  
+             System.out.println(i);
+             if(i <= 1) {//não tem extensão
+                 file = new File(file.getPath()+".bkc");
+            }
+            
+            //verifica se o arquivo existe
+            if(file.exists()) {
+                System.out.println("Arquivo existe. " + file.getPath());
+                textoStatus.setText(textoStatus.getText() + "Arquivo lido...\nInício da leitura de scripts de BK...\n");
+                
+                //faz leitura do arquivo
+                ObjectInputStream is = null;
+                
+                //tenta criar a leitura do arquivo
+                try {
+                    is = new ObjectInputStream(new FileInputStream(file.getPath()));
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(fileChooser, "Arquivo inválido!","Recuperar arquivo de Backup",JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                    return;
+                } 
+                
+                //tenta setar o arquivo na classe arquivoBK na instancia arquivo
+                try {
+                    arquivo = (ArquivoBk) is.readObject();
+                    
+                    System.out.println(arquivo.getTitulo());
+                    System.out.println(arquivo.getData());
+                    for(int y = 0; y < arquivo.getScriptInsert().size(); y++)
+                        System.out.println(arquivo.getScriptInsert().get(y));
+                    
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(fileChooser, "Erro ao ler o arquivo!","Recuperar arquivo de Backup",JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                    return;
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(fileChooser, "Arquivo inválido!","Recuperar arquivo de Backup",JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace();
+                    return;
+                }
+                
+            }
+            else {
+                //se arquivo não existe reinicia o processo
+                JOptionPane.showMessageDialog(fileChooser, "Arquivo inexistente!", "Recuperar arquivo de Backup", JOptionPane.INFORMATION_MESSAGE);
+                restauraBd(textoStatus,barraEstado,barraProcesso);
+                return;
+            }//fim da verificação se arquivo criado não existe
+            
+        }//fim da criação do arquivo
+        else{
+            textoStatus.setText("Cancelado pelo usuário.");  
+            barraEstado.setValue(0); 
+            barraProcesso.setString("Aguardando início do processo..."); 
+            barraProcesso.setIndeterminate(false);
+            return;
+    }//fim de quando usuário cancela
+        
+        // ao terminar volta as barras ao seu estado inicial
+       barraProcesso.setIndeterminate(false);
+       barraProcesso.setString("Processo finalizado..."); 
+       
+ 
+    }//fim do recupera BK
     
     //retorna data do sistema
     public String getData(String formato) {
@@ -342,4 +486,42 @@ public class SystemMethods {
        Date x = new Date();
        return  dataform.format(x);
     }
+    
+    //testa conexao com o BD
+    public boolean testeConexao() {
+      
+       try{
+           
+            ConfiguracoesBd_CRUD configs = new   ConfiguracoesBd_CRUD();
+            ConfiguracoesBd dados = configs.leDllBd();
+      
+      
+    
+                Connection con; // declarando um objeto com qualquer nome, faz conexão com o BD;
+                String usuario = dados.getUsuarioBanco().toString(); // user é root;
+                String senha= dados.getSenhaBanco(); // senha do BD;
+                String url="jdbc:mysql://"+dados.getEnderecoBancoDeDados()+"/" + dados.getNomeBanco(); // uma string própria de cada bando de dados;
+           
+                Class.forName("com.mysql.jdbc.Driver");
+                //System.out.println("Driver OK!!!");
+
+                con = DriverManager.getConnection(url,usuario,senha);
+                //System.out.println("Conexao OK!!!");
+                
+                return true;
+                
+        }//try
+                catch(ClassNotFoundException exc)
+        {
+                return false;
+            
+        }//catch 1
+                catch(SQLException exc)
+        {
+                return false;
+        }//catch 2
+      
+      
+      
+  }
 }

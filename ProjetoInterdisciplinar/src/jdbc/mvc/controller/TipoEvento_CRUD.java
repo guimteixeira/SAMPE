@@ -26,7 +26,6 @@ public class TipoEvento_CRUD {
   
        stmt.execute();
        stmt.close();
-       co.Fechar_Conexao();
 
       } catch(SQLException e){
             JOptionPane.showMessageDialog(null,"ERRO..."+e.getMessage(),"Cadastro de Clientes",0);

@@ -66,6 +66,7 @@ public class ConfiguracoesBd_CRUD {
         dadosBasicos.setNomeBanco("CRM");
         dadosBasicos.setUsuarioBanco("root");
         dadosBasicos.setSenhaBanco("root");
+        dadosBasicos.setPorta(3106);
         
          ObjectInputStream is;
         try {

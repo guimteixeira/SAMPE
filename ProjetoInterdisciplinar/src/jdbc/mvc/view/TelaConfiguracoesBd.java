@@ -37,6 +37,7 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
             jTextField1.setText(inf.getEnderecoBancoDeDados());
             jTextField2.setText(inf.getNomeBanco());
             jTextField3.setText(inf.getUsuarioBanco());
+            jTextField4.setText(String.valueOf(inf.getPorta()));
             jPasswordField1.setText(inf.getSenhaBanco());
             
             inf = null;
@@ -59,6 +60,7 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -66,6 +68,7 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Configurações");
@@ -80,7 +83,7 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configurações de Conexão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
 
         jLabel1.setDisplayedMnemonic('n');
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 11));
         jLabel1.setLabelFor(jTextField1);
         jLabel1.setText("Endereço do Banco de Dados:");
 
@@ -91,7 +94,14 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
             }
         });
 
+        jLabel5.setDisplayedMnemonic('p');
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel5.setLabelFor(jTextField4);
+        jLabel5.setText("Porta:");
+
+        jLabel2.setDisplayedMnemonic('o');
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel2.setLabelFor(jTextField2);
         jLabel2.setText("Nome do Banco:");
 
         jTextField2.setText("crm");
@@ -101,12 +111,16 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
             }
         });
 
+        jLabel3.setDisplayedMnemonic('u');
         jLabel3.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel3.setLabelFor(jTextField3);
         jLabel3.setText("Usuário do Banco de Dados:");
 
         jTextField3.setText("root");
 
+        jLabel4.setDisplayedMnemonic('b');
         jLabel4.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel4.setLabelFor(jPasswordField1);
         jLabel4.setText("Senha do Banco de Dados:");
 
         jPasswordField1.setText("jPasswordField1");
@@ -119,27 +133,35 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
             }
         });
 
+        jTextField4.setText("3106");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(3, 3, 3)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                            .addComponent(jTextField4))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,6 +175,10 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,10 +190,10 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 350, 180));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 210));
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-387)/2, (screenSize.height-237)/2, 387, 237);
+        setBounds((screenSize.width-364)/2, (screenSize.height-257)/2, 364, 257);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -184,25 +210,44 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
         //verifica se os campos estão preenchidos
         
         if(jTextField1.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do endereço do BD!");
+            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do endereço do BD!", "Configuração", JOptionPane.INFORMATION_MESSAGE);
             jTextField1.requestFocus(); // seta foco
             return; // sai da funcao
         }
         
         if(jTextField2.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do nome do BD!");
+            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do nome do BD!", "Configuração", JOptionPane.INFORMATION_MESSAGE);
             jTextField2.requestFocus(); // seta foco
             return; // sai da funcao
         }
         
+         
+        if(jTextField4.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo da porta do BD!", "Configuração", JOptionPane.INFORMATION_MESSAGE);
+            jTextField4.requestFocus(); // seta foco
+            return; // sai da funcao
+        }
+        
         if(jTextField3.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do usuário do BD!");
+            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do usuário do BD!", "Configuração", JOptionPane.INFORMATION_MESSAGE);
             jTextField3.requestFocus(); // seta foco
             return; // sai da funcao
         }
         
+        int porta;
+        
+        try{
+           porta = Integer.parseInt(jTextField4.getText());
+        }catch(Exception ex){
+            
+            JOptionPane.showMessageDialog(rootPane, "Porta inválida", "Configuração", JOptionPane.INFORMATION_MESSAGE);
+            jTextField3.requestFocus(); // seta foco
+            return; // sai da funcao
+            
+        }
+        
         if(jPasswordField1.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do senha do BD!");
+            JOptionPane.showMessageDialog(rootPane, "Por favor preencha o campo do senha do BD!", "Configuração", JOptionPane.INFORMATION_MESSAGE);
             jPasswordField1.requestFocus(); // seta foco
             return; // sai da funcao
         }
@@ -214,6 +259,7 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
         dados.setEnderecoBancoDeDados(jTextField1.getText());
         dados.setNomeBanco(jTextField2.getText());
         dados.setUsuarioBanco(jTextField3.getText());
+        dados.setPorta(porta);
         dados.setSenhaBanco(jPasswordField1.getText());  
         
         String[] botoes = {"Sim","Não"};  //botoes a substituir o JOptionPane.YES_NO_OPTION
@@ -221,6 +267,7 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
          if (JOptionPane.showOptionDialog(null, 
                 "Deseja salvar estas configurações?\n\n"
                 + "Endereço do Banco: " + dados.getEnderecoBancoDeDados() + "\n"
+                + "Porta: " + dados.getPorta() + "\n"
                 + "Nome: " + dados.getNomeBanco() + "\n"
                 + "Usuário: " + dados.getUsuarioBanco(),
                 "Configurações",
@@ -290,10 +337,12 @@ public class TelaConfiguracoesBd extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

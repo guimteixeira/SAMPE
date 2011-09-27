@@ -16,6 +16,17 @@ public class ConfiguracoesBd implements Serializable {
     private String nomeBanco;
     private String usuarioBanco;
     private String senhaBanco;
+    private int porta;
+
+    public int getPorta() {
+        return porta;
+    }
+
+    public void setPorta(int porta) {
+        this.porta = porta;
+    }
+    
+    
 
     public String getEnderecoBancoDeDados() {
         return enderecoBancoDeDados;

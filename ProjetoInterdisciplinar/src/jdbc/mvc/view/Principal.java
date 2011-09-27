@@ -10,7 +10,14 @@
  */
 package jdbc.mvc.view;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import jdbc.mvc.controller.SystemMethods;
+import jdbc.mvc.model.UsuarioSistema;
 
 /**
  *
@@ -19,10 +26,12 @@ import jdbc.mvc.controller.SystemMethods;
 public class Principal extends javax.swing.JFrame {
 
     /** Creates new form Principal */
-    public Principal() {
+    public Principal(UsuarioSistema usuario) {
         initComponents();
+        
+        jLabel4.setText("Olá, seja bem-vindo " + usuario.getNome() + ".");
     }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -32,32 +41,220 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        jButton5 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        Cadastro = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
         CadastraPessoa = new javax.swing.JMenuItem();
         Cadastraevento = new javax.swing.JMenuItem();
         CadastraUsuario = new javax.swing.JMenuItem();
         CadastraTipoEvento = new javax.swing.JMenuItem();
         CadastraMalaDireta = new javax.swing.JMenuItem();
         CadastraFilho = new javax.swing.JMenuItem();
-        CadastraEmail = new javax.swing.JMenuItem();
         CadastraCategoriaPessoa = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Apoio a Marketing Pós Eventos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 11));
+        jLabel1.setText("Status:");
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Yellow.png"))); // NOI18N
+        jLabel2.setText("Verificando conexão com Banco de Dados");
+        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 11));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Yellow.png"))); // NOI18N
+        jLabel3.setText("Verificando conexão com Servidor de E-mails");
+        jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setText("Mensagem");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/User.png"))); // NOI18N
+        jButton1.setToolTipText("Cadastrar Pessoa");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setName(""); // NOI18N
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+        jButton1.getAccessibleContext().setAccessibleDescription("");
+
+        jToolBar1.add(jSeparator3);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Mail.png"))); // NOI18N
+        jButton2.setToolTipText("Enviar Email");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Phone.png"))); // NOI18N
+        jButton3.setToolTipText("Torpedos");
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Mail Alt.png"))); // NOI18N
+        jButton4.setToolTipText("Gerar etiquetas para mala direta");
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton4);
+        jToolBar1.add(jSeparator4);
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Help.png"))); // NOI18N
+        jButton5.setToolTipText("Central de Ajuda");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton5);
+
+        jMenu1.setMnemonic('a');
         jMenu1.setText("Arquivo");
+
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Edit.png"))); // NOI18N
+        jMenu6.setText("Cadastro");
+
+        CadastraPessoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/User.png"))); // NOI18N
+        CadastraPessoa.setText("Cadastro de Pessoa");
+        CadastraPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraPessoaActionPerformed(evt);
+            }
+        });
+        jMenu6.add(CadastraPessoa);
+
+        Cadastraevento.setText("Cadastro de Evento");
+        Cadastraevento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraeventoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(Cadastraevento);
+
+        CadastraUsuario.setText("Cadastro Usuário");
+        CadastraUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu6.add(CadastraUsuario);
+
+        CadastraTipoEvento.setText("Cadastro Tipo de Evento");
+        CadastraTipoEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraTipoEventoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(CadastraTipoEvento);
+
+        CadastraMalaDireta.setText("Cadastro Mala Direta");
+        jMenu6.add(CadastraMalaDireta);
+
+        CadastraFilho.setText("Cadastrar Filho");
+        CadastraFilho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraFilhoActionPerformed(evt);
+            }
+        });
+        jMenu6.add(CadastraFilho);
+
+        CadastraCategoriaPessoa.setText("Cadastro de Categoria de Pessoa");
+        CadastraCategoriaPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastraCategoriaPessoaActionPerformed(evt);
+            }
+        });
+        jMenu6.add(CadastraCategoriaPessoa);
+
+        jMenu1.add(jMenu6);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Harddisk.png"))); // NOI18N
         jMenu3.setText("Backup");
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Right.png"))); // NOI18N
         jMenuItem2.setText("Gerar arquivo de Backup");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +263,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Left.png"))); // NOI18N
         jMenuItem3.setText("Ler arquivo de Backup");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenu1.add(jMenu3);
@@ -84,66 +287,35 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        Cadastro.setText("Cadastro");
+        jMenu5.setMnemonic('d');
+        jMenu5.setText("Ações de Marketing");
 
-        CadastraPessoa.setText("Cadastro de Pessoa");
-        CadastraPessoa.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Mail.png"))); // NOI18N
+        jMenuItem7.setText("Enviar E-mail");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastraPessoaActionPerformed(evt);
+                jMenuItem7ActionPerformed(evt);
             }
         });
-        Cadastro.add(CadastraPessoa);
+        jMenu5.add(jMenuItem7);
 
-        Cadastraevento.setText("Cadastro de Evento");
-        Cadastraevento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastraeventoActionPerformed(evt);
-            }
-        });
-        Cadastro.add(Cadastraevento);
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Phone.png"))); // NOI18N
+        jMenuItem8.setText("Gerar XML para Torpedos");
+        jMenu5.add(jMenuItem8);
 
-        CadastraUsuario.setText("Cadastro Usuário");
-        CadastraUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastraUsuarioActionPerformed(evt);
-            }
-        });
-        Cadastro.add(CadastraUsuario);
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Mail Alt.png"))); // NOI18N
+        jMenuItem9.setText("Gerar Etiquetas para Mala Direta");
+        jMenu5.add(jMenuItem9);
 
-        CadastraTipoEvento.setText("Cadastro Tipo de Evento");
-        CadastraTipoEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastraTipoEventoActionPerformed(evt);
-            }
-        });
-        Cadastro.add(CadastraTipoEvento);
+        jMenuBar1.add(jMenu5);
 
-        CadastraMalaDireta.setText("Cadastro Mala Direta");
-        Cadastro.add(CadastraMalaDireta);
-
-        CadastraFilho.setText("Cadastrar Filho");
-        CadastraFilho.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastraFilhoActionPerformed(evt);
-            }
-        });
-        Cadastro.add(CadastraFilho);
-
-        CadastraEmail.setText("Cadastrar Email");
-        Cadastro.add(CadastraEmail);
-
-        CadastraCategoriaPessoa.setText("Cadastro de Categoria de Pessoa");
-        CadastraCategoriaPessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastraCategoriaPessoaActionPerformed(evt);
-            }
-        });
-        Cadastro.add(CadastraCategoriaPessoa);
-
-        jMenuBar1.add(Cadastro);
-
+        jMenu2.setMnemonic('n');
         jMenu2.setText("Configurações");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/database.png"))); // NOI18N
         jMenuItem1.setText("Banco de Dados");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +324,40 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Mail Server.png"))); // NOI18N
+        jMenuItem10.setText("Servidor de Emails");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setMnemonic('u');
+        jMenu4.setText("Ajuda");
+
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Help.png"))); // NOI18N
+        jMenuItem5.setText("Central de Ajuda");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+        jMenu4.add(jSeparator2);
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Smiley.png"))); // NOI18N
+        jMenuItem6.setText("Sobre ");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -160,11 +365,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 419, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -184,8 +393,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void CadastraPessoaActionPerformed(java.awt.event.ActionEvent evt) {                                               
 
-    CadastroPessoa x = new CadastroPessoa(this, true);
-    x.setVisible(true);
+   exibiCadastraPessoa();
     
     }
         private void CadastraeventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastraeventoActionPerformed
@@ -231,6 +439,101 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here
+         //processo paralelo para verificação de conexões
+        new Thread() {
+            private String host;
+            @Override
+            public void run() {
+             
+             while(true) {
+                
+             SystemMethods c = new SystemMethods();
+             
+             if(c.testeConexao()) {
+                  jLabel2.setIcon(new ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Green.png")));
+                  jLabel2.setText("Conectado ao Banco de Dados");
+             }
+             else {
+                 jLabel2.setIcon(new ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Red.png")));
+                 jLabel2.setText("Desconectado do Banco de Dados");
+             }
+             host = "webmail.gmtwebservices.com";
+             
+             
+             
+              try {
+                 if (InetAddress.getByName(host).isReachable(5000)) {
+                      jLabel3.setIcon(new ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Green.png")));
+                      jLabel3.setText("Conectado ao Servidor de Emails");
+                 }
+                    
+                 else {
+                     jLabel3.setIcon(new ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Red.png")));
+                     jLabel3.setText("Desconectado do Servidor de Emails");
+                 }
+                } catch (Exception e) {
+                      jLabel3.setIcon(new ImageIcon(getClass().getResource("/jdbc/mvc/view/icons/Ball Red.png")));
+                      jLabel3.setText("Desconectado do Servidor de Emails");
+                }
+            
+             /*
+                 try {
+                       sleep(6000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
+
+                }//fim do while
+            }
+        }.start();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        TelaSobre tela = new TelaSobre(this,true);
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        TelaRecuperarBk tela = new TelaRecuperarBk(this,true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        exibiAjuda();
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        exibiAjuda();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        exibiEnviaEmail();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        exibiEnviaEmail();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        
+        TelaConfiguracoesEmail tela = new TelaConfiguracoesEmail(this, true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        exibiCadastraPessoa();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,28 +565,68 @@ public class Principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new Principal().setVisible(true);
+                new Principal(new UsuarioSistema()).setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CadastraCategoriaPessoa;
-    private javax.swing.JMenuItem CadastraEmail;
     private javax.swing.JMenuItem CadastraFilho;
     private javax.swing.JMenuItem CadastraMalaDireta;
     private javax.swing.JMenuItem CadastraPessoa;
     private javax.swing.JMenuItem CadastraTipoEvento;
     private javax.swing.JMenuItem CadastraUsuario;
     private javax.swing.JMenuItem Cadastraevento;
-    private javax.swing.JMenu Cadastro;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
+    private void exibiCadastraPessoa() {
+         CadastroPessoa x = new CadastroPessoa(this, true);
+         x.setVisible(true);
+    }
+    
+    //exibir tela de Ajuda
+    private void exibiAjuda() {
+        //modal tem que ser FALSE, pois o usuário poderá ler ajuda e mexer no programa
+        TelaAjuda tela = new TelaAjuda();
+        tela.setVisible(true);
+    }
+    
+    //exibir tela de envio de E-mail
+    private void exibiEnviaEmail() {
+        //modal tem que ser FALSE, pois o usuário poderá ler ajuda e mexer no programa
+        TelaEnviarEmail tela = new TelaEnviarEmail(this,true);
+        tela.setVisible(true);
+    }
 }
