@@ -6,7 +6,7 @@
 /*
  * CadastroEvento.java
  *
- * Created on 17/09/2011, 15:02:53
+ * Created on 17/09/2011, 15:02:53 Lucas
  */
 package jdbc.mvc.view;
 
@@ -26,11 +26,11 @@ public class CadastroEvento extends javax.swing.JDialog {
 
    public static ArrayList<TipoEvento_model> retornotipo = new ArrayList<TipoEvento_model>();
    SystemMethods sm = new SystemMethods();
-   
+
     public CadastroEvento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         TipoEvento_CRUD c = new TipoEvento_CRUD();
             retornotipo = (ArrayList<TipoEvento_model>) c.compara();
             cmb_tipo.addItem("Selecione o TIPO");
@@ -204,16 +204,16 @@ private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          return;
      }
     //************************************************************
-    
+
     if(cmb_tipo.getSelectedIndex() == 0)
      {
          JOptionPane.showMessageDialog(null,"Escolha o TIPO!!!");
          cmb_tipo.requestFocus();
          return;
      }
-    
+
     //*************************************************************
-    
+
     if(ftxt_data.getText().equals("  /  /    "))
      {
          JOptionPane.showMessageDialog(null,"Preencha a DATA!!!");
@@ -221,7 +221,7 @@ private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          return;
      }
     //*************************************************************
-    
+
     if(ftxt_hora.getText().equals("  :  "))
      {
          JOptionPane.showMessageDialog(null,"Preencha a HORA DO EVENTO!!!");
@@ -229,7 +229,7 @@ private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          return;
      }
     //******************************************************************
-    
+
     if(txt_local.getText().equals(""))
      {
          JOptionPane.showMessageDialog(null,"Preencha o LOCAL DO EVENTO!!!");
@@ -237,23 +237,23 @@ private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
          return;
      }
     //******************************************************************
-    
-         
-    
+
+
+
 
     try {
         Evento_model c = new Evento_model();
 
-        
+
         c.setDescricao(txta_descricao.getText());
-        
-              
+
+
         c.setId(retornotipo.get(cmb_tipo.getSelectedIndex()-1).getCodtipoevento());
         System.out.println(retornotipo.get(cmb_tipo.getSelectedIndex()-1).getCodtipoevento());
         c.setData(sm.getData("yyyyMMdd"));
         c.setHora(ftxt_hora.getText());
         c.setLocal(txt_local.getText());
-        
+
 
 
         Evento_CRUD cd = new Evento_CRUD();
@@ -263,16 +263,16 @@ private void btn_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         ftxt_data.setText("");
         ftxt_hora.setText("");
         cmb_tipo.setSelectedItem(-1);
-        
+
         txta_descricao.requestFocus();
 
-        
+
 
         }//try
         catch(Exception e){
               JOptionPane.showMessageDialog(null,e.getMessage());
 
-    }             
+    }
 }//GEN-LAST:event_btn_salvarActionPerformed
 
 private void btn_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limparActionPerformed
@@ -291,7 +291,7 @@ private void btn_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
